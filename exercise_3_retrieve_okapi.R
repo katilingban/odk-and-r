@@ -11,7 +11,40 @@
 #
 ################################################################################
 
-## Load okapi package -----------------------------------------------------------
+## Load okapi package ----------------------------------------------------------
 if (!require(okapi)) remotes::install("rapidsurveys/okapi")
 
-# Retrieve Test Server data
+
+## Retrieve Test Server data ---------------------------------------------------
+
+# STEP 1: Authenticate with ONA
+
+# Authenticate with username and password
+ona_auth_password(username = "ENTER_YOUR_USERNAME", 
+                  password = "ENTER_YOUR_PASSWORD")
+
+# Authenticate with ONA token
+ona_auth_token(token = "ENTER_YOUR_TOKEN")
+
+# Set system environment variables for ONA authentication credentials
+
+Sys.getenv()  ## Retrieve environment variables
+
+Sys.setenv(ONA_USERNAME = "ENTER_YOUR_USERNAME")
+Sys.setenv(ONA_PASSWORD = "ENTER_YOUR_PASSWORD")
+Sys.setenv(ONA_TOKEN = "ENTER_YOUR_TOKEN")
+
+
+# STEP 2: List the forms you have access to in ONA
+ona_list_data()                        ## Default parameters used
+
+ona_list_data(auth_mode = "password")  ## authenticate using password
+
+
+# STEP 3: Retrieve the needed form
+ona_get_data(form_id = 276175)         ## Access form with id 276175
+
+
+
+
+
